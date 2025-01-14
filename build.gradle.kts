@@ -1,21 +1,12 @@
 plugins {
     id("java")
     id("org.springframework.boot") version "3.4.1"
-    id("io.spring.dependency-management") version "1.1.6"
-    id("java-library")
 }
-
-group = "com.fc"
-version = "0.0.1-SNAPSHOT"
 
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
     }
-}
-
-repositories {
-    mavenCentral()
 }
 
 dependencies {
@@ -25,6 +16,35 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
-tasks.test {
-    useJUnitPlatform()
+allprojects{
+    group = "com.fc"
+    version = "0.0.1-SNAPSHOT"
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+subprojects{
+    apply{
+        plugin("java")
+        plugin("io.spring.dependency-management")
+        plugin("org.springframework.boot")
+        plugin("java-library")
+    }
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(21)
+        }
+    }
+
+    tasks.test {
+        useJUnitPlatform()
+    }
+
+    dependencies {
+        testImplementation(platform("org.junit:junit-bom:5.10.0"))
+        testImplementation("org.junit.jupiter:junit-jupiter")
+    }
 }
