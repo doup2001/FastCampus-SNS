@@ -1,0 +1,5 @@
+rootProject.name = 'fc-notification'
+include 'api'
+include 'core'
+include 'consumer'
+
