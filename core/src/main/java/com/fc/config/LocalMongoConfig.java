@@ -17,14 +17,13 @@ public class LocalMongoConfig {
 
     private final static String MONGODB_IMAGE_NAME = "mongo:5.0";
     private final static int MONGODB_INNER_PORT = 27107;
-    private final static String DATABASE_NAME = "notifications";
+    private final static String DATABASE_NAME = "notification";
     private final static GenericContainer mongo = createMongoDBInstance();
 
     // 몽고 DB 도커이미지에서 불러오기
     private static GenericContainer createMongoDBInstance() {
         return new GenericContainer(DockerImageName.parse(MONGODB_IMAGE_NAME))
-                .withExposedPorts(MONGODB_INNER_PORT)
-                .withReuse(true);
+                .withExposedPorts(MONGODB_INNER_PORT);
     }
 
     // 몽고 DB 시작
@@ -41,7 +40,7 @@ public class LocalMongoConfig {
     @PreDestroy
     public void stopMongo() {
         try {
-            mongo.stop();
+            if (mongo.isRunning()) mongo.stop();
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
@@ -50,14 +49,15 @@ public class LocalMongoConfig {
     // 몽고 팩토리 생성
     @Bean(name = "notificationMongoFactory")
     public MongoDatabaseFactory notificationMongoFactory() {
-        return new SimpleMongoClientDatabaseFactory(connectionString());
+        return new SimpleMongoClientDatabaseFactory(
+                connectionString()
+        );
     }
 
     // 커넥션 만드는 함수 생성
     private ConnectionString connectionString() {
         String host = mongo.getHost();
         Integer port = mongo.getMappedPort(MONGODB_INNER_PORT);
-        log.info("Port {}", port);
 
         return new ConnectionString("mongodb://" + host + ":" + port + "/" + DATABASE_NAME);
     }

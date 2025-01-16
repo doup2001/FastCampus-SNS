@@ -1,6 +1,7 @@
 plugins {
     id("java")
     id("org.springframework.boot") version "3.4.1"
+    id("io.spring.dependency-management") version "1.1.4"
 }
 
 java {
@@ -8,6 +9,9 @@ java {
         languageVersion = JavaLanguageVersion.of(21)
     }
 }
+
+ext["springCloudVersion"] = "2023.0.0"
+
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
@@ -28,9 +32,10 @@ allprojects{
 subprojects{
     apply{
         plugin("java")
-        plugin("io.spring.dependency-management")
-        plugin("org.springframework.boot")
         plugin("java-library")
+        plugin("org.springframework.boot")
+        plugin("io.spring.dependency-management")
+
     }
 
     java {
@@ -51,4 +56,11 @@ subprojects{
         testImplementation("org.junit.jupiter:junit-jupiter")
         testImplementation("org.springframework.boot:spring-boot-starter-test")
     }
+
+    dependencyManagement {
+        imports {
+            mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
+        }
+    }
+
 }
