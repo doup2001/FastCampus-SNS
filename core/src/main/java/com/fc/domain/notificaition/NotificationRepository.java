@@ -1,4 +1,4 @@
-package com.fc;
+package com.fc.domain.notificaition;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;

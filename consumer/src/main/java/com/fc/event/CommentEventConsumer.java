@@ -1,7 +1,5 @@
 package com.fc.event;
 
-import com.fc.Notification;
-import com.fc.NotificationType;
 import com.fc.task.CommentAddTask;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

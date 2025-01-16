@@ -1,5 +1,6 @@
-package com.fc;
+package com.fc.in.client;
 
+import com.fc.in.domain.Post;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package com.fc;
+package com.fc.domain.notificaition;
 
 public enum NotificationType {
     LIKE,

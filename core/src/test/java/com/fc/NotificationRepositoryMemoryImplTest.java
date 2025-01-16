@@ -1,5 +1,8 @@
 package com.fc;
 
+import com.fc.domain.notificaition.Notification;
+import com.fc.domain.notificaition.NotificationRepository;
+import com.fc.domain.notificaition.NotificationType;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,7 +26,7 @@ class NotificationRepositoryMemoryImplTest {
 
     @Test
     void test_save() {
-        sut.save(new Notification("1",1L,NotificationType.LIKE,now,deleteAt));
+        sut.save(new Notification("1",1L, NotificationType.LIKE,now,deleteAt));
 
         Optional<Notification> optionalNotification = sut.findById("1");
         assertTrue(optionalNotification.isPresent());

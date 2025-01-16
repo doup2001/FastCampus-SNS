@@ -1,5 +1,7 @@
-package com.fc;
+package com.fc.domain.comment;
 
+import com.fc.domain.notificaition.Notification;
+import com.fc.domain.notificaition.NotificationType;
 import lombok.Getter;
 import org.springframework.data.annotation.TypeAlias;
 
