@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
+import java.util.Objects;
 
 @Log4j2
 @Component
@@ -28,12 +29,13 @@ public class CommentAddTask {
     public void processEvent(CommentEvent commentEvent) {
 
         Post post = postClient.getPost(commentEvent.getPostId());
-        Comment comment = commentClient.getComment(commentEvent.getCommentId());
 
         // 글 작성자와 같다면 알림은 스킵
-        if (post.getUserId()== commentEvent.getUserId()) {
+        if (Objects.equals(post.getUserId(), commentEvent.getUserId())) {
             return;
         }
+
+        Comment comment = commentClient.getComment(commentEvent.getCommentId());
 
         // 알림 생성
         CommentNotification notification = createNotification(post, comment);
@@ -56,6 +58,7 @@ public class CommentAddTask {
                 now.plus(90, ChronoUnit.DAYS),
                 post.getId(),
                 comment.getUserId(),
+                comment.getId(),
                 comment.getContent()
         );
     }

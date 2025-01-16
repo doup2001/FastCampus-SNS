@@ -1,10 +1,12 @@
 package com.fc.domain.notificaition;
 
+import lombok.Getter;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.Instant;
 
 @Document("notifications")
+@Getter
 public abstract class Notification {
 
     public String id;
