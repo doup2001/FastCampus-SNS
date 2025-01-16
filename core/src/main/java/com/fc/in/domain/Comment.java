@@ -12,7 +12,6 @@ public class Comment {
     private Long id;
     private Long userId;
     private String content;
-    private Long postId;
     private Instant createdAt;
 
 }
