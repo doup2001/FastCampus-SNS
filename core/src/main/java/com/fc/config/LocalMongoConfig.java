@@ -15,10 +15,10 @@ import org.testcontainers.utility.DockerImageName;
 @Configuration
 public class LocalMongoConfig {
 
-    private final static String MONGODB_IMAGE_NAME = "mongo:5.0";
-    private final static int MONGODB_INNER_PORT = 27107;
-    private final static String DATABASE_NAME = "notification";
-    private final static GenericContainer mongo = createMongoDBInstance();
+    private static final String MONGODB_IMAGE_NAME = "mongo:5.0";
+    private static final int MONGODB_INNER_PORT = 27017;
+    private static final String DATABASE_NAME = "notification";
+    private static final GenericContainer mongo = createMongoDBInstance();
 
     // 몽고 DB 도커이미지에서 불러오기
     private static GenericContainer createMongoDBInstance() {
@@ -58,7 +58,7 @@ public class LocalMongoConfig {
     private ConnectionString connectionString() {
         String host = mongo.getHost();
         Integer port = mongo.getMappedPort(MONGODB_INNER_PORT);
-
+        log.info("PORT {}", port);
         return new ConnectionString("mongodb://" + host + ":" + port + "/" + DATABASE_NAME);
     }
 

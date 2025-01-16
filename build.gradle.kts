@@ -1,26 +1,18 @@
 plugins {
     id("java")
-    id("org.springframework.boot") version "3.4.1"
+    id("org.springframework.boot") version "3.3.2"
     id("io.spring.dependency-management") version "1.1.4"
 }
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion.set(JavaLanguageVersion.of(21))
     }
 }
 
-ext["springCloudVersion"] = "2023.0.0"
+ext["springCloudVersion"] = "2023.0.0"	// https://spring.io/projects/spring-cloud-stream
 
-
-dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-web")
-
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-}
-
-allprojects{
+allprojects {
     group = "com.fc"
     version = "0.0.1-SNAPSHOT"
 
@@ -29,23 +21,18 @@ allprojects{
     }
 }
 
-subprojects{
-    apply{
+subprojects {
+    apply {
         plugin("java")
         plugin("java-library")
         plugin("org.springframework.boot")
         plugin("io.spring.dependency-management")
-
     }
 
     java {
         toolchain {
-            languageVersion = JavaLanguageVersion.of(21)
+            languageVersion.set(JavaLanguageVersion.of(21))
         }
-    }
-
-    tasks.test {
-        useJUnitPlatform()
     }
 
     dependencies {
@@ -63,4 +50,7 @@ subprojects{
         }
     }
 
+    tasks.test {
+        useJUnitPlatform()
+    }
 }
