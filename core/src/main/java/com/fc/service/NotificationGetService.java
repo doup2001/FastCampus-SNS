@@ -14,8 +14,12 @@ public class NotificationGetService {
 
     private final NotificationRepository repository;
 
-    public Optional<Notification> get(NotificationType type, Long commentId) {
+    public Optional<Notification> findByTypeAndCommentId(NotificationType type, Long commentId) {
         return repository.findByTypeAndCommentId(type, commentId);
+    }
+
+    public Optional<Notification> findByTypeAndPostId(NotificationType type, Long postId) {
+        return repository.findByTypeAndPostId(type, postId);
     }
 
 }

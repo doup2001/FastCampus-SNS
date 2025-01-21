@@ -2,6 +2,8 @@ package com.fc.domain;
 
 import lombok.Getter;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.data.mongodb.core.mapping.FieldType;
 
 import java.time.Instant;
 
@@ -9,6 +11,7 @@ import java.time.Instant;
 @Getter
 public abstract class Notification {
 
+    @Field(targetType = FieldType.STRING)
     public String id;
     public Long userId;
     public NotificationType type;
@@ -24,6 +27,18 @@ public abstract class Notification {
         this.occurredAt = occurredAt;
         this.createdAt = createdAt;
         this.lastUpdatedAt = lastUpdatedAt;
+        this.deleteAt = deleteAt;
+    }
+
+    public void setOccurredAt(Instant occurredAt) {
+        this.occurredAt = occurredAt;
+    }
+
+    public void setLastUpdatedAt(Instant lastUpdatedAt) {
+        this.lastUpdatedAt = lastUpdatedAt;
+    }
+
+    public void setDeleteAt(Instant deleteAt) {
         this.deleteAt = deleteAt;
     }
 

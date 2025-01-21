@@ -18,5 +18,8 @@ public interface NotificationRepository extends MongoRepository<Notification,Str
     @Query("{ 'type': ?0, 'commentId': ?1 }")
     Optional<Notification> findByTypeAndCommentId(NotificationType type, long commentId);
 
+    @Query("{ 'type': ?0, 'postId': ?1 }")
+    Optional<Notification> findByTypeAndPostId(NotificationType type, long postId);
+
 
 }
