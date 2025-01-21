@@ -23,9 +23,9 @@ public class LikeNotification extends Notification {
         this.likerIds = likerIds;
     }
 
-    public void addLiker(Long likerId, Instant now, Instant retention) {
+    public void addLiker(Long likerId,Instant occurredAt ,Instant now, Instant retention) {
         likerIds.add(likerId);
-        this.setOccurredAt(now);
+        this.setOccurredAt(occurredAt);
         this.setLastUpdatedAt(now);
         this.setDeleteAt(retention);
     }

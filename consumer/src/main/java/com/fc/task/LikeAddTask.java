@@ -57,7 +57,7 @@ public class LikeAddTask {
 
         } else { // 존재 했다면 값 업데이트
             LikeNotification notification = (LikeNotification) optionalNotification.get();
-            notification.addLiker(event.getUserId(), now, retention);
+            notification.addLiker(event.getUserId(), event.getCreatedAt(), now, retention);
             return notification;
         }
     }
