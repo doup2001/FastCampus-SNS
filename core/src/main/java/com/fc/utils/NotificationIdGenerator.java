@@ -1,4 +1,4 @@
-package com.fc.domain;
+package com.fc.utils;
 
 import org.bson.types.ObjectId;
 

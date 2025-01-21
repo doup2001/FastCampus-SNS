@@ -6,7 +6,7 @@ import com.fc.domain.Post;
 import com.fc.client.PostClient;
 import com.fc.domain.CommentNotification;
 import com.fc.event.CommentEvent;
-import com.fc.domain.NotificationIdGenerator;
+import com.fc.utils.NotificationIdGenerator;
 import com.fc.domain.NotificationType;
 import com.fc.service.NotificationSaveService;
 import lombok.RequiredArgsConstructor;
