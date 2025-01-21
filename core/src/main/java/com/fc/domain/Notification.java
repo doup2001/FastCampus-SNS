@@ -1,4 +1,4 @@
-package com.fc.domain.notificaition;
+package com.fc.domain;
 
 import lombok.Getter;
 import org.springframework.data.mongodb.core.mapping.Document;

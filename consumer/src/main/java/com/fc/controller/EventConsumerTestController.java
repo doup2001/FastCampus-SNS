@@ -1,4 +1,4 @@
-package com.fc.api;
+package com.fc.controller;
 
 import com.fc.event.CommentEvent;
 import org.springframework.beans.factory.annotation.Autowired;

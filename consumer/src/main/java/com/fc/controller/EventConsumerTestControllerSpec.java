@@ -1,4 +1,4 @@
-package com.fc.api;
+package com.fc.controller;
 
 import com.fc.event.CommentEvent;
 import io.swagger.v3.oas.annotations.Operation;

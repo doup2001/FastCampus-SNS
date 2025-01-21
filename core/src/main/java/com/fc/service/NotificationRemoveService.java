@@ -1,6 +1,6 @@
-package com.fc.out;
+package com.fc.service;
 
-import com.fc.domain.notificaition.NotificationRepository;
+import com.fc.domain.NotificationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

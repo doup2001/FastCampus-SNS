@@ -1,6 +1,6 @@
-package com.fc.in.client;
+package com.fc.client;
 
-import com.fc.in.domain.Comment;
+import com.fc.domain.Comment;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;

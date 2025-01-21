@@ -1,4 +1,4 @@
-package com.fc.domain.notificaition;
+package com.fc.domain;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
