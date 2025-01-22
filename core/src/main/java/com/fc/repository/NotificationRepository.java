@@ -2,10 +2,13 @@ package com.fc.repository;
 
 import com.fc.domain.Notification;
 import com.fc.domain.NotificationType;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.time.Instant;
 import java.util.Optional;
 
 @Repository
@@ -25,5 +28,12 @@ public interface NotificationRepository extends MongoRepository<Notification,Str
 
     @Query("{ 'type': ?0, 'userId': ?1 , 'followerId':  ?2}")
     Optional<Notification> findByTypeAndUserIdAndFollowerId(NotificationType type, long userId, long followerId);
-    
+
+
+    // 목록조회하기 (처음부터)
+    Slice<Notification> findAllByUserIdOrderByOccurredAtDesc(long userId, Pageable pageable);
+
+    // occurredAt이 있으면, 해당 pivot부터 조회
+    Slice<Notification> findAllByUserIdAndOccurredAtLessThanOrderByOccurredAtDesc(long userId, Instant pivot, Pageable pageable);
+
 }
