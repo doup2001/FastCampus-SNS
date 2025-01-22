@@ -1,6 +1,7 @@
 package com.fc.service;
 
 import com.fc.repository.NotificationRepository;
+import com.fc.service.dto.GetUserNotificationsByPivotResult;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -15,11 +16,11 @@ public class NotificationListService {
 
     // 목록조회 Pivot 방식 vs Paging 처리 하는 방식 존재
     // occurredAt을 기준으로 무한 스크롤이 발생하도록
-    public void getUserNotificationsByPivot(long userId, Instant occurredAt) {
+    public GetUserNotificationsByPivotResult getUserNotificationsByPivot(long userId, Instant occurredAt) {
         if (occurredAt == null) {
-            repository.findAllByUserIdOrderByOccurredAtDesc(userId, PageRequest.of(0, PAGE_SIZE));
+            return GetUserNotificationsByPivotResult.of(repository.findAllByUserIdOrderByOccurredAtDesc(userId, PageRequest.of(0, PAGE_SIZE)));
         } else {
-            repository.findAllByUserIdAndOccurredAtLessThanOrderByOccurredAtDesc(userId, occurredAt, PageRequest.of(0, PAGE_SIZE));
+            return GetUserNotificationsByPivotResult.of(repository.findAllByUserIdAndOccurredAtLessThanOrderByOccurredAtDesc(userId, occurredAt, PageRequest.of(0, PAGE_SIZE)));
         }
     }
 
