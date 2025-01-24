@@ -36,4 +36,7 @@ public interface NotificationRepository extends MongoRepository<Notification,Str
     // occurredAt이 있으면, 해당 pivot부터 조회
     Slice<Notification> findAllByUserIdAndOccurredAtLessThanOrderByOccurredAtDesc(long userId, Instant pivot, Pageable pageable);
 
+    // 최신 읽음 시간 1개 가져오기
+    Optional<Notification> findFirstByUserIdOrderByOccurredAtDesc(Long userId);
+
 }
