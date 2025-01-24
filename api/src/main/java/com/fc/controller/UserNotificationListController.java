@@ -11,10 +11,11 @@ import java.time.Instant;
 @RequiredArgsConstructor
 
 @RequestMapping("/v1/user-notifications")
-public class UserNotificationListController {
+public class UserNotificationListController implements UserNotificationListControllerSpec{
 
     private final GetUserNotificationService getUserNotificationService;
 
+    @Override
     @GetMapping("/{userId}")
     public UserNotificationListResponse getNotifications(
             @PathVariable("userId") Long userId,
