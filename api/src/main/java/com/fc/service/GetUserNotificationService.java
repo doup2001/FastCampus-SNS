@@ -7,6 +7,7 @@ import com.fc.service.converter.CommentNotificationConverter;
 import com.fc.service.converter.FollowNotificationConverter;
 import com.fc.service.converter.LikeNotificationConverter;
 import com.fc.service.dto.ConvertedNotification;
+import com.fc.service.dto.GetUserNotificationResult;
 import com.fc.service.dto.GetUserNotificationsByPivotResult;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -24,7 +25,7 @@ public class GetUserNotificationService {
     private final FollowNotificationConverter followConverter;
 
     // 들어온 값 변환
-    public void getUserNotificationByPivot(long userId, Instant pivot) {
+    public GetUserNotificationResult getUserNotificationByPivot(long userId, Instant pivot) {
 
         GetUserNotificationsByPivotResult result = listService.getUserNotificationsByPivot(userId, pivot);
 
@@ -35,6 +36,11 @@ public class GetUserNotificationService {
                     case FOLLOW -> followConverter.convert((FollowNotification) notification);
                 })
                 .toList();
+
+        return new GetUserNotificationResult(
+                convertedNotifications,
+                result.getHasNext()
+        );
 
     }
 
