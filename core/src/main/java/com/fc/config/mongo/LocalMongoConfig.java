@@ -1,4 +1,4 @@
-package com.fc.config;
+package com.fc.config.mongo;
 
 import com.mongodb.ConnectionString;
 import jakarta.annotation.PostConstruct;

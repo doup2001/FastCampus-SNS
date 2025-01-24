@@ -15,6 +15,8 @@ public class UserNotificationListController implements UserNotificationListContr
 
     private final GetUserNotificationService getUserNotificationService;
 
+
+    // 유저별 목록 조회
     @Override
     @GetMapping("/{userId}")
     public UserNotificationListResponse getNotifications(
@@ -24,6 +26,5 @@ public class UserNotificationListController implements UserNotificationListContr
         return UserNotificationListResponse.of(
                 getUserNotificationService.getUserNotificationByPivot(userId, pivot)
         );
-
     }
 }
